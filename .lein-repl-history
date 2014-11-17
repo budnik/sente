@@ -1,0 +1,4 @@
+(run)
+(start-figwheel)
+(cljs!)
+(js/alert "foo")
