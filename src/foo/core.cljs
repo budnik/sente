@@ -1,6 +1,9 @@
 (ns foo.core
+  (:require-macros [cljs.core.async.macros :as asyncm :refer (go go-loop)])
   (:require [reagent.core :as reagent :refer [atom]]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [cljs.core.async :as async :refer (<! >! put! chan)]
+            [taoensso.sente  :as sente :refer (cb-success?)]))
 
 (defonce app-state (atom {:text "Hello, what is your name? "}))
 
@@ -16,9 +19,25 @@
          #"\s+")
 ))
 
+(def token_from_url
+  (peek 
+    (re-find #"(?:access_token=)([^&]+)" js/document.location.hash))))
+
 (defn page []
-  [:div (@app-state :text) "Dmytro Budnyk"
-    [:a {:target  "_blank" :href oauth-url} "Login"]])
+  [:div (@app-state :text) "Kotala la-la-la"
+    (if token_from_url 
+      [:p "Welcome!"]
+      [:a {:href oauth-url} "Login"])])
+
+(let [{:keys [chsk ch-recv send-fn state]}
+      (sente/make-channel-socket! "/chsk" ; Note the same path as before
+       {:type :auto ; e/o #{:auto :ajax :ws}
+       })]
+  (def chsk       chsk)
+  (def ch-chsk    ch-recv) ; ChannelSocket's receive channel
+  (def chsk-send! send-fn) ; ChannelSocket's send API fn
+  (def chsk-state state)   ; Watchable, read-only atom
+  )
 
 (defn main []
   (reagent/render-component [page] (.getElementById js/document "app")))

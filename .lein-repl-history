@@ -2,3 +2,19 @@
 (start-figwheel)
 (cljs!)
 (js/alert "foo")
+T~
+(run)
+(start-figwheel)
+(run)
+(start-figwheel)
+start-figwheel
+(start-figwheel)
+(run)
+exit
+(when-let 
+[a "1"]
+(pr a) "foo")
+(when-let
+[b nil]
+(pr "2") "foo" "bar")
+exit

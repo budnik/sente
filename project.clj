@@ -10,6 +10,7 @@
                  [org.clojure/clojurescript "0.0-2371" :scope "provided"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [ring "1.3.1"]
+                 [com.taoensso/sente "1.2.0"]
                  [compojure "1.2.0"]
                  [figwheel "0.1.4-SNAPSHOT"]
                  [environ "1.0.0"]
@@ -29,6 +30,6 @@
   :cljsbuild {:builds {:app {:source-paths ["src" "dev"]
                              :compiler {:output-to "resources/public/js/app.js"
                                         :output-dir "resources/public/js/out"
-                                        :source-map    "resources/public/js/out.js.map"
+                                        :source-map "resources/public/js/out.js.map"
                                         :optimizations :none}}}}
   )
