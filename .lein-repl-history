@@ -18,3 +18,76 @@ exit
 [b nil]
 (pr "2") "foo" "bar")
 exit
+(start-figwheel
+)
+(run)
+exit
+(run)
+(start-figwheel)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(run)
+(start-figwheel)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+(run)
+(doseq [uid (:any @connected-uids)]
+      (chsk-send! uid
+        [:some/broadcast
+         {:what-is-this "A broadcast pushed from server"
+          :how-often    "Every 10 seconds"
+          :to-whom uid
+          :i i}]))
+(doseq [uid (:any @connected-uids)]
+      (chsk-send! uid
+        [:some/broadcast
+         {:what-is-this "A broadcast pushed from server"
+          :how-often    "Every 10 seconds"
+          :to-whom uid
+          :i 5}]))
+@connected-uids
+(@connected-uids)
+(:any @connected-uids)
+@connected-uids
+(:ajax @connected-uids)
+exit
+(reload)
+exit
+(start-figwheel_
+(start-figwheel)
+(run)
+exit
+(start-figwheel)
+exit
+(run)
+(start-figwheel
+(start-figwheel)
+exit
+(start-figwheel)
+(run)
+(@connected-uids)
+@connected-uids
+exit
